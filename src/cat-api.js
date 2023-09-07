@@ -29,8 +29,8 @@ export function fetchCatByBreed(breedId) {
   return axios
     .get(`${URL}images/search?breed_ids=${breedId}`)
     .then(function (response) {
-      if (response.status !== 200) {
-        throw new Error(res.status);
+      if (response.data.length === 0) {
+        throw new Error(response.status);
       }
 
       return response.data[0];
