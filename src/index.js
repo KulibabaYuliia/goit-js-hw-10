@@ -13,14 +13,19 @@ catInfo.classList.add('visually-hidden');
 
 fetchBreeds()
   .then(data => {
-    selectEL.innerHTML = data
-      .map(item => {
-        return `<option value="${item.id}">${item.name}</option>`;
-      })
-      .join('');
+    selectEL.innerHTML =
+      `<option data-placeholder="true"></option>` +
+      data
+        .map(item => {
+          return `<option value="${item.id}">${item.name}</option>`;
+        })
+        .join('');
 
     new SlimSelect({
       select: selectEL,
+      settings: {
+        placeholderText: 'Pease, choose the breed',
+      },
     });
 
     selectEL.classList.remove('visually-hidden');
